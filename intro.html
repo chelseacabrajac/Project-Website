@@ -355,6 +355,11 @@
     }
     
     @media (max-width: 768px) {
+      /* TEST: Make background bright red to verify mobile CSS is working */
+      body {
+        background: #ff0000 !important;
+      }
+      
       .intro-container, .cv-container {
         padding: 24px 16px 120px 76px !important;
         max-width: calc(100vw - 76px) !important;
@@ -390,13 +395,11 @@
         display: flex !important;
         justify-content: center !important;
         overflow: hidden !important;
-        background: rgba(255, 0, 0, 0.1) !important; /* Temporary red tint to verify changes */
       }
       
       .profile-container > div {
         width: 100vw !important;
         justify-content: flex-start !important;
-        background: rgba(0, 255, 0, 0.1) !important; /* Temporary green tint */
       }
       
       .profile-container > div > div {
@@ -405,7 +408,6 @@
         margin: 0 !important;
         position: relative !important;
         left: 15vw !important;
-        background: rgba(0, 0, 255, 0.1) !important; /* Temporary blue tint */
       }
       
       .profile-container img {
@@ -515,13 +517,11 @@
         max-width: none !important;
         width: 100vw !important;
         overflow: hidden !important;
-        background: rgba(255, 255, 0, 0.15) !important; /* Temporary yellow tint for 480px */
       }
       
       .profile-container > div {
         width: 100vw !important;
         justify-content: flex-start !important;
-        background: rgba(255, 0, 255, 0.1) !important; /* Temporary magenta tint */
       }
       
       .profile-container > div > div {
@@ -530,7 +530,6 @@
         margin: 0 !important;
         position: relative !important;
         left: 12vw !important;
-        background: rgba(0, 255, 255, 0.1) !important; /* Temporary cyan tint */
       }
       
       .profile-container img {
