@@ -285,6 +285,46 @@
             justify-content: right;
         }
         
+        .profile-container > div {
+            display: flex; 
+            justify-content: flex-end; 
+            width: 100%;
+        }
+        
+        .profile-container > div > div {
+            position: relative; 
+            width: 480px; 
+            height: 480px; 
+            flex-shrink: 0; 
+            display: flex; 
+            align-items: flex-start; 
+            justify-content: flex-end;
+        }
+        
+        .profile-container img {
+            width: 480px; 
+            height: 480px; 
+            object-fit: cover; 
+            display: block; 
+            background: transparent; 
+            box-shadow: 0 0 30px 0 rgba(16,16,16,0.35); 
+            position: absolute; 
+            right: 0; 
+            top: 0; 
+            z-index: 1;
+        }
+        
+        .gradient-animate {
+            position: absolute; 
+            left: 0; 
+            bottom: 0; 
+            width: 100%; 
+            height: 35%; 
+            pointer-events: none; 
+            z-index: 2; 
+            background: linear-gradient(to top, rgba(16,16,16,0.9) 0%, rgba(16,16,16,0.6) 30%, rgba(16,16,16,0.0) 100%);
+        }
+        
         /* Responsive layout improvements */
         @media (min-width: 769px) {
             .cv-container {
@@ -875,11 +915,13 @@
         Chelsea has a relentless intention to contribute to organizations, seeking as a uniquely resilient and results-oriented data professional. Success is found in environments where a diverse background can offer a fresh perspective and drive significant impact.
         <br>
       </div>
-    <div class="profile-container" style="width: 100%; max-width: 500px; margin: -560px -512px 24px auto; text-align: right; display: flex; justify-content: right;">
-      <div style="display: flex; justify-content: flex-end; width: 100%;">
-        <div style="position: relative; width: 480px; height: 480px; flex-shrink: 0; display: flex; align-items: flex-start; justify-content: flex-end;">
-        <img src="Headshot no background.jpeg" class="photo-animate" style="width: 480px; height: 480px; object-fit: cover; display: block; background: transparent; box-shadow: 0 0 30px 0 rgba(16,16,16,0.35); position: absolute; right: 0; top: 0; z-index: 1;">
-          <span class="gradient-animate" style="position: absolute; left: 0; bottom: 0; width: 100%; height: 35%; pointer-events: none; z-index: 2; background: linear-gradient(to top, rgba(16,16,16,0.9) 0%, rgba(16,16,16,0.6) 30%, rgba(16,16,16,0.0) 100%);"></span>
+    <div class="profile-container">
+      <div>
+        <div>
+        <img src="Headshot no background.jpeg" class="photo-animate">
+          <span class="gradient-animate"></span>
+    </div>
+      </div>
     </div>
     <!-- script moved to end of body for reliable animation -->
 <script>
