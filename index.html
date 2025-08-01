@@ -33,10 +33,42 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Exit animations */
+        .slide-out-left {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        .slide-out-left.exit {
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+        
+        .slide-out-right {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        .slide-out-right.exit {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        
+        body.exit {
+            transition: background-position 0.8s cubic-bezier(0.4,0,0.2,1);
+            background-position: 200% 100% !important;
+        }
+        
         body {
             margin: 0;
             font-family: 'Montserrat', Arial, sans-serif;
             background: #101010;
+            background-image: url('Headshot no background.jpeg');
+            background-size: 60%;
+            background-position: 130% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: #CCCCCC;
             text-transform: uppercase;
             font-weight: normal;
@@ -44,11 +76,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(16, 16, 16, 0.7);
+            z-index: 1;
+            pointer-events: none;
         }
         .container {
             display: block;
             margin-top: 16px;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
         p {
             font-size: 1rem;
@@ -118,6 +164,15 @@
         padding-left: 16px !important;
         padding-right: 16px !important;
       }
+      
+      body {
+        background-size: 80% !important;
+        background-position: 110% 120% !important;
+      }
+      
+      body.exit {
+        background-position: 200% 120% !important;
+      }
     }
     
     @media (max-width: 768px) {
@@ -125,6 +180,21 @@
         padding: 24px 16px 120px 76px !important;
         max-width: calc(100vw - 76px) !important;
         margin: 0 auto !important;
+      }
+      
+      body {
+        background-size: 100% !important;
+        background-position: 120% 130% !important;
+        background-attachment: scroll !important;
+      }
+      
+      body.exit {
+        background-position: 220% 130% !important;
+      }
+      
+      /* Mobile-optimized exit animations */
+      .slide-out-left.exit {
+        transform: translateX(-120px) !important;
       }
       
       h1 {
@@ -154,6 +224,21 @@
         max-width: calc(100vw - 72px) !important;
       }
       
+      body {
+        background-size: 120% !important;
+        background-position: 130% 140% !important;
+        background-attachment: scroll !important;
+      }
+      
+      body.exit {
+        background-position: 250% 140% !important;
+      }
+      
+      /* Small mobile exit animations */
+      .slide-out-left.exit {
+        transform: translateX(-150px) !important;
+      }
+      
       h1 {
         font-size: 1.2rem !important;
       }
@@ -166,10 +251,10 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="slide-in-left" style="margin-bottom:0;">CHELSEA CABRAJAC</h1>
-        <hr style="border: none; border-top: 1px solid #CCCCCC; width: 110%; margin: 2px auto 4px -5%;">
-        <p class="slide-in-right">Creative Developer and Designer</p>
-        <a href="intro.html" class="enter-link slide-in-up">Enter</a>
+        <h1 class="slide-in-left slide-out-left" style="margin-bottom:0;">CHELSEA CABRAJAC</h1>
+        <hr class="slide-out-left" style="border: none; border-top: 1px solid #CCCCCC; width: 110%; margin: 2px auto 4px -5%;">
+        <p class="slide-in-right slide-out-left">Creative Developer and Designer</p>
+        <a href="intro.html" class="enter-link slide-in-up slide-out-left">Enter</a>
 <script>
   window.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
@@ -177,6 +262,33 @@
         el.classList.add('active');
       });
     }, 200);
+  });
+  
+  // Add exit animations when Enter is clicked
+  document.addEventListener('DOMContentLoaded', function() {
+    const enterLink = document.querySelector('.enter-link');
+    const h1 = document.querySelector('h1');
+    const hr = document.querySelector('hr');
+    const p = document.querySelector('p');
+    const body = document.querySelector('body');
+    
+    enterLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Add exit classes to text elements (slide left)
+      h1.classList.add('slide-out-left', 'exit');
+      hr.classList.add('slide-out-left', 'exit');
+      p.classList.add('slide-out-left', 'exit');
+      enterLink.classList.add('exit');
+      
+      // Add exit class to body (slide photo right)
+      body.classList.add('exit');
+      
+      // Navigate after animation completes
+      setTimeout(function() {
+        window.location.href = 'intro.html';
+      }, 800);
+    });
   });
 </script>
     </div>
