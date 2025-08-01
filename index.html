@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHELSEA CABRAJAC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <style>
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-80px);
+            transition: opacity 1.6s cubic-bezier(0.4,0,0.2,1), transform 1.6s cubic-bezier(0.4,0,0.2,1);
+        }
+        .slide-in-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: opacity 1.6s 0.2s cubic-bezier(0.4,0,0.2,1), transform 1.6s 0.2s cubic-bezier(0.4,0,0.2,1);
+        }
+        .slide-in-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .slide-in-up {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1.6s 0.4s cubic-bezier(0.4,0,0.2,1), transform 1.6s 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .slide-in-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #101010;
+            color: #CCCCCC;
+            text-transform: uppercase;
+            font-weight: normal;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            display: block;
+            margin-top: 16px;
+            text-align: center;
+        }
+        p {
+            font-size: 1rem;
+            margin-top: 0;
+            margin-bottom: 32px;
+            color: #CCCCCC;
+            font-weight: normal;
+        }
+        .cta {
+            display: inline-block;
+            padding: 16px 40px;
+            background: #232526;
+            color: #CCCCCC;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(60,60,60,0.2);
+            transition: background 0.2s, color 0.2s;
+            border: 1px solid #CCCCCC;
+        }
+        .cta:hover {
+            background: #CCCCCC;
+            color: #232526;
+        }
+        .enter-link {
+            display: block;
+            margin: 16px auto 0 auto;
+            color: #CCCCCC;
+            font-size: 1.1rem;
+            font-weight: normal;
+            text-transform: uppercase;
+            position: relative;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .enter-link::before,
+        .enter-link::after {
+            content: '';
+            position: absolute;
+            left: 40%;
+            right: 40%;
+            width: 20%;
+            height: 1px;
+            background: #CCCCCC;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .enter-link::before {
+            top: -6px;
+        }
+        .enter-link::after {
+            bottom: -6px;
+        }
+        .enter-link:hover {
+            color: #CCCCCC;
+        }
+        .enter-link:hover::before,
+        .enter-link:hover::after {
+            opacity: 1;
+        }
+    </style>
+    <style>
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px 8px !important;
+        max-width: 98vw !important;
+      }
+      h1 {
+        font-size: 1.3rem;
+        margin-left: 0 !important;
+        text-align: center !important;
+      }
+      h2 {
+        font-size: 1.05rem;
+      }
+      p, .enter-link, .cta {
+        font-size: 0.95rem;
+      }
+      .sidebar {
+        display: none;
+      }
+      hr {
+        width: 100% !important;
+        margin-left: 0 !important;
+      }
+    }
+    </style>
+    <style>
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px 8px;
+        max-width: 98vw;
+      }
+      h1 {
+        font-size: 1.4rem;
+      }
+      p, .enter-link, .cta {
+        font-size: 0.95rem;
+      }
+      .enter-link {
+        width: 100%;
+        min-width: 0;
+      }
+      hr {
+        width: 100% !important;
+        margin-left: 0 !important;
+      }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="slide-in-left" style="margin-bottom:0;">CHELSEA CABRAJAC</h1>
+        <hr style="border: none; border-top: 1px solid #CCCCCC; width: 110%; margin: 2px auto 4px -5%;">
+        <p class="slide-in-right">Creative Developer and Designer</p>
+        <a href="intro.html" class="enter-link slide-in-up">Enter</a>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-up').forEach(function(el) {
+        el.classList.add('active');
+      });
+    }, 200);
+  });
+</script>
+    </div>
+</body>
+</html>

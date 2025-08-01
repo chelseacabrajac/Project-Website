@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chelsea Cabrajac | Intro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <style>
+        .text-animate {
+            opacity: 0;
+            transform: translateX(-80px);
+            transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+        }
+        .text-animate.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        /* Animation for photo and gradients */
+        .photo-animate {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+        }
+        .photo-animate.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .gradient-animate {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1.2s 0.2s cubic-bezier(0.4,0,0.2,1), transform 1.2s 0.2s cubic-bezier(0.4,0,0.2,1);
+        }
+        .gradient-animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #101010;
+            color: #CCCCCC;
+            min-height: 100vh;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+        .main-header {
+            width: 100%;
+            background: #101010;
+            color: #CCCCCC;
+            padding: 0 32px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            height: 64px;
+            border-bottom: none;
+        }
+        .header-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .header-name {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            font-stretch: condensed;
+            color: #CCCCCC;
+            text-transform: uppercase;
+            margin-right: 0;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .header-nav {
+            display: flex;
+            gap: 18px;
+        }
+        .header-link {
+            color: #CCCCCC;
+            position: relative;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            padding: 6px 0;
+            display: inline-block;
+        }
+        .header-link::before,
+        .header-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #CCCCCC;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .header-link::before {
+            top: 0;
+        }
+        .header-link::after {
+            bottom: 0;
+        }
+        .header-link:hover {
+            color: #CCCCCC;
+        }
+        .header-link:hover::before,
+        .header-link:hover::after {
+            opacity: 1;
+        }
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 18px;
+        }
+        .header-icon {
+            display: inline-block;
+            vertical-align: middle;
+            transition: transform 0.2s;
+        }
+        .header-icon:hover svg {
+            transform: scale(1.25);
+            fill: #CCCCCC;
+        }
+         .cv-outer {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .cv-container {
+            max-width: 500px;
+            margin: 0;
+            padding: 24px 0 0 300px;
+            text-align: left;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            text-transform: none;
+        }
+        .cv-container p {
+            font-size: 0.80rem;
+            color: #CCCCCC;
+            line-height: 1.6;
+            text-transform: none;
+        }
+        .intro-outer {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .intro-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 48px 32px 24px 32px;
+            text-align: left;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .intro-container p {
+            font-size: 0.85rem;
+            color: #CCCCCC;
+            line-height: 1.6;
+            text-transform: none;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0;
+            color: #CCCCCC;
+            letter-spacing: 2px;
+            font-weight: 400;
+            font-stretch: condensed;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.3rem;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            color: #CCCCCC;
+            font-weight: 400;
+        }
+        ul {
+            margin: 0 0 24px 0;
+            padding: 0 0 0 20px;
+        }
+        li {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #CCCCCC;
+            text-transform: none;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: #CCCCCC;
+            font-size: 1.1rem;
+            font-weight: normal;
+            text-transform: uppercase;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: #fff;
+        }
+        .footer {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #101010;
+            color: #CCCCCC;
+            text-align: center;
+            padding: 16px 0 8px 0;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            z-index: 10;
+            box-sizing: border-box;
+        }
+        .footer-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 8px;
+            transition: transform 0.2s;
+        }
+        .footer-icon:hover svg {
+            transform: scale(1.2);
+            fill: #fff;
+        }
+        /* Add sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 100vh;
+            background: #101010;
+            color: #CCCCCC;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            z-index: 100;
+            padding-top: 8vh;
+        }
+        .sidebar-name {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 2.0rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 80;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #CCCCCC;
+            padding: 0;
+            margin: 48px 0 0 -16px;
+            user-select: none;
+            transform: rotate(180deg);
+            align-self: flex-start;
+        }
+    </style>
+    <style>
+    @media (max-width: 600px) {
+      .intro-container, .cv-container {
+        padding: 24px 8px 12px 8px !important;
+        max-width: 98vw !important;
+      }
+      h1 {
+        font-size: 1.3rem;
+        margin-left: 0 !important;
+        text-align: center !important;
+      }
+      h2 {
+        font-size: 1.05rem;
+      }
+      p, li, .back-link {
+        font-size: 0.95rem;
+      }
+      .sidebar {
+        display: none;
+      }
+      .main-header {
+        padding: 0 8px;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-nav {
+        gap: 10px;
+      }
+      hr {
+        width: 100% !important;
+        margin-left: 0 !important;
+      }
+    }
+    </style>
+    <style>
+    @media (max-width: 600px) {
+      .intro-container, .cv-container {
+        padding: 24px 8px 12px 8px !important;
+        max-width: 98vw !important;
+      }
+      h1 {
+        font-size: 1.3rem;
+      }
+      h2 {
+        font-size: 1.05rem;
+      }
+      p, li, .back-link {
+        font-size: 0.95rem;
+      }
+      .sidebar {
+        display: none;
+      }
+      .main-header {
+        padding: 0 8px;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-nav {
+        gap: 10px;
+      }
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+      <span class="sidebar-name">Chelsea Cabrajac</span>
+      <hr style="width: 1px; height: 400px; border: none; background: #CCCCCC; margin: 45px 0 0 0;">
+    </div>
+    <header class="main-header">
+        <div class="header-content">
+        <div class="header-right">
+            <nav class="header-nav">
+            <a href="intro.html" class="header-link">About Me</a>
+            <a href="cv.html" class="header-link">CV</a>
+            <a href="projects.html" class="header-link">Projects</a>
+          </nav>
+          <div class="header-icons">
+            <a href="mailto:cabrajac.cm@gmail.com" class="header-icon" title="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#CCCCCC" viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.01L12 13l8-6.99V6H4zm16 2.24l-8 7-8-7V18h16V8.24z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/chelseacabrajac" class="header-icon" title="LinkedIn" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#CCCCCC" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.026-3.063-1.867-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="cv-outer">
+      <div class="cv-container">
+      <div class="text-animate" style="margin-bottom: 50px; text-align: left; font-size: 0.90em; margin-top: 32px;">
+        Chelsea is multicultural and multifaceted in design, with a passion for travel and culinary experiences. After traveling the world with sports and an extremely decorated athletic journey, Chelsea has built a career around solving complex problems under pressure. This journey began as a highly decorated dual-sport NCAA Division I Athlete, instilling a strong work ethic and exceptional ability to perform in high-stress environments. That foundation led her to a career as a professional firefighter with the Long Beach Fire Department, serving on some of the nation's busiest resources and consistently demonstrating unwavering attention to detail in critical situations while protecting life, property, and the environment.<br><br>
+        This passion for impactful problem-solving is now channeled into the world of data science. Having completed the TripleTen Data Science program, her proficiency exists in Python, SQL, Data Visualization, and Machine Learning. These skills are used to analyze complex datasets, uncover crucial insights, and deliver data-driven results that directly improve business decision-making.<br><br>
+        Chelsea has a relentless intention to contribute to organizations, seeking as a uniquely resilient and results-oriented data professional. Success is found in environments where a diverse background can offer a fresh perspective and drive significant impact.
+        <br>
+      </div>
+    <div class="profile-container" style="width: 100%; max-width: 500px; margin: -470px -512px 24px auto; text-align: right; display: flex; justify-content: right;">
+      <div style="display: flex; justify-content: flex-end; width: 100%;">
+        <div style="position: relative; width: 420px; height: 420px; flex-shrink: 0; display: flex; align-items: flex-start; justify-content: flex-end;">
+<img src="Headshot2.jpeg" class="photo-animate" style="width: 420px; height: 420px; object-fit: cover; display: block; background: transparent; box-shadow: 0 0 60px 0 rgba(16,16,16,0.55); position: absolute; right: 0; top: 0; z-index: 1;">
+          <span class="gradient-animate" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; background: linear-gradient(90deg, rgba(16,16,16,0.97) 0%, rgba(16,16,16,0.45) 40%, rgba(16,16,16,0.0) 80%); border-radius: 0 12px 12px 0;"></span>
+          <span class="gradient-animate" style="position: absolute; right: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; background: linear-gradient(270deg, rgba(16,16,16,0.97) 0%, rgba(16,16,16,0.45) 40%, rgba(16,16,16,0.0) 80%); border-radius: 12px 0 0 12px;"></span>
+    </div>
+    <!-- script moved to end of body for reliable animation -->
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      document.querySelectorAll('.photo-animate, .gradient-animate, .text-animate').forEach(function(el) {
+        el.classList.add('active');
+      });
+    }, 200);
+  });
+</script>
+        </div>
+      </div>
+    </div>
+      </div>
+      <footer class="footer">
+        <span>CHELSEA CABRAJAC&nbsp;|&nbsp;</span>
+        <a href="mailto:cabrajac.cm@gmail.com" class="footer-icon" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#CCCCCC" viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.01L12 13l8-6.99V6H4zm16 2.24l-8 7-8-7V18h16V8.24z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/chelseacabrajac" class="footer-icon" title="LinkedIn" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#CCCCCC" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.026-3.063-1.867-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
+        </a>
+        <a href="index.html" class="footer-icon" title="Home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#CCCCCC" viewBox="0 0 24 24"><path d="M12 3l10 9h-3v9h-6v-6h-2v6H5v-9H2z"/></svg>
+        </a>
+      </footer>
+    </div>
+</body>
+</html>
