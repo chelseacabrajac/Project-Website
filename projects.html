@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Chelsea Cabrajac | Projects</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
     <style>
@@ -15,6 +15,41 @@
             opacity: 1;
             transform: translateX(0);
         }
+        
+        /* Tablet animation optimization */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .slide-in-left {
+                transition: opacity 1.5s cubic-bezier(0.4,0,0.2,1), transform 1.5s cubic-bezier(0.4,0,0.2,1);
+            }
+        }
+        
+        /* Mobile animation optimization */
+        @media (max-width: 768px) and (min-width: 481px) {
+            .slide-in-left {
+                transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1), transform 1.2s cubic-bezier(0.4,0,0.2,1);
+            }
+        }
+        
+        /* Small mobile animation optimization */
+        @media (max-width: 480px) {
+            .slide-in-left {
+                transition: opacity 1s cubic-bezier(0.4,0,0.2,1), transform 1s cubic-bezier(0.4,0,0.2,1);
+            }
+        }
+        
+        /* Landscape mobile animation optimization */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .slide-in-left {
+                transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+            }
+        }
+        
+        /* Small landscape mobile animation optimization */
+        @media (max-width: 480px) and (orientation: landscape) {
+            .slide-in-left {
+                transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+            }
+        }
         body {
             margin: 0;
             font-family: 'Montserrat', Arial, sans-serif;
@@ -23,6 +58,9 @@
             min-height: 100vh;
             text-transform: uppercase;
             font-weight: normal;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
         }
         .main-header {
             width: 100%;
@@ -69,6 +107,10 @@
             text-transform: uppercase;
             padding: 6px 0;
             display: inline-block;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            touch-action: manipulation;
         }
         .header-link::before,
         .header-link::after {
@@ -94,6 +136,10 @@
         .header-link:hover::after {
             opacity: 1;
         }
+        .header-link.active::before,
+        .header-link.active::after {
+            opacity: 1;
+        }
         .header-icons {
             display: flex;
             align-items: center;
@@ -104,6 +150,12 @@
             display: inline-block;
             vertical-align: middle;
             transition: transform 0.2s;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
         }
         .header-icon:hover svg {
             transform: scale(1.25);
@@ -205,6 +257,12 @@
             vertical-align: middle;
             margin: 0 8px;
             transition: transform 0.2s;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
         }
         .footer-icon:hover svg {
             transform: scale(1.2);
@@ -282,7 +340,7 @@
       
       .sidebar-name {
         font-size: 1.4rem !important;
-        margin: 24px 0 0 -12px !important;
+        margin: 16px 0 0 -12px !important;
       }
       .main-header {
         padding: 8px 16px !important;
@@ -294,16 +352,18 @@
         flex-direction: row !important;
         align-items: center !important;
         width: 100% !important;
+        justify-content: flex-end !important;
       }
       .header-nav {
         gap: 8px !important;
         margin-top: 0 !important;
       }
       .header-right {
-        width: 100% !important;
+        width: auto !important;
         flex-direction: row !important;
         align-items: center !important;
         gap: 12px !important;
+        justify-content: flex-end !important;
       }
       .header-icons {
         margin-left: 8px !important;
@@ -351,6 +411,11 @@
         padding: 4px 0 !important;
       }
       
+      .header-link.active::before,
+      .header-link.active::after {
+        opacity: 1 !important;
+      }
+      
       .header-right {
         gap: 8px !important;
       }
@@ -365,6 +430,7 @@
       
       .sidebar-name {
         font-size: 1.2rem !important;
+        margin: 12px 0 0 -12px !important;
       }
       
       /* Fix sidebar HR element on small mobile */
@@ -373,6 +439,265 @@
         margin: 15px 0 0 0 !important;
         width: 1px !important;
         display: block !important;
+      }
+    }
+    
+    /* Landscape orientation adjustments for mobile */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 50px !important;
+        height: 100vh !important;
+        z-index: 200 !important;
+        padding-top: 2vh !important;
+      }
+      
+      .sidebar-name {
+        font-size: 0.8rem !important;
+        margin: 8px 0 0 -8px !important;
+      }
+      
+      .sidebar hr {
+        height: 120px !important;
+        margin: 10px 0 0 0 !important;
+      }
+      
+      .projects-container {
+        padding: 12px 8px 60px 58px !important;
+        max-width: calc(100vw - 58px) !important;
+      }
+      
+      .main-header {
+        padding: 4px 8px 4px 58px !important;
+        height: 50px !important;
+      }
+      
+      .header-nav {
+        gap: 4px !important;
+      }
+      
+      .header-link {
+        font-size: 0.7rem !important;
+        padding: 2px 0 !important;
+      }
+      
+      .header-link.active::before,
+      .header-link.active::after {
+        opacity: 1 !important;
+      }
+      
+      .header-right {
+        gap: 6px !important;
+      }
+      
+      .header-icons {
+        margin-left: 4px !important;
+      }
+      
+      h1 {
+        font-size: 1.0rem !important;
+      }
+      
+      h2 {
+        font-size: 0.9rem !important;
+      }
+      
+      p, li, .back-link {
+        font-size: 0.75rem !important;
+      }
+      
+      .project-title {
+        font-size: 0.8rem !important;
+      }
+      
+      .project-desc, .project-link {
+        font-size: 0.7rem !important;
+      }
+      
+      .project-item {
+        margin-bottom: 16px !important;
+      }
+    }
+    
+    @media (max-width: 480px) and (orientation: landscape) {
+      .sidebar {
+        width: 45px !important;
+        padding-top: 1vh !important;
+      }
+      
+      .sidebar-name {
+        font-size: 0.7rem !important;
+        margin: 6px 0 0 -6px !important;
+      }
+      
+      .sidebar hr {
+        height: 100px !important;
+        margin: 8px 0 0 0 !important;
+      }
+      
+      .projects-container {
+        padding: 8px 6px 40px 52px !important;
+        max-width: calc(100vw - 52px) !important;
+      }
+      
+      .main-header {
+        padding: 3px 6px 3px 52px !important;
+        height: 45px !important;
+      }
+      
+      .header-link {
+        font-size: 0.65rem !important;
+      }
+      
+      .header-link.active::before,
+      .header-link.active::after {
+        opacity: 1 !important;
+      }
+      
+      h1 {
+        font-size: 0.9rem !important;
+      }
+      
+      h2 {
+        font-size: 0.8rem !important;
+      }
+      
+      p, li, .back-link {
+        font-size: 0.7rem !important;
+      }
+      
+      .project-title {
+        font-size: 0.75rem !important;
+      }
+      
+      .project-desc, .project-link {
+        font-size: 0.65rem !important;
+      }
+      
+      .project-item {
+        margin-bottom: 12px !important;
+      }
+    }
+    
+    /* Portrait orientation optimizations */
+    @media (max-width: 768px) and (orientation: portrait) {
+      .projects-container {
+        padding: 20px 12px 110px 70px !important;
+        max-width: calc(100vw - 70px) !important;
+      }
+      
+      .main-header {
+        padding: 6px 12px 6px 70px !important;
+        height: 56px !important;
+      }
+      
+      .sidebar {
+        width: 58px !important;
+        padding-top: 3vh !important;
+      }
+      
+      .sidebar-name {
+        font-size: 1.3rem !important;
+        margin: 14px 0 0 -10px !important;
+      }
+      
+      .sidebar hr {
+        height: 180px !important;
+        margin: 18px 0 0 0 !important;
+      }
+      
+      h1 {
+        font-size: 1.3rem !important;
+      }
+      
+      h2 {
+        font-size: 1.05rem !important;
+      }
+      
+      p, li, .back-link, .project-title, .project-desc, .project-link {
+        font-size: 0.85rem !important;
+      }
+      
+      .header-nav {
+        gap: 7px !important;
+      }
+      
+      .header-right {
+        gap: 10px !important;
+      }
+      
+      .header-icons {
+        margin-left: 7px !important;
+      }
+    }
+    
+    @media (max-width: 480px) and (orientation: portrait) {
+      .projects-container {
+        padding: 14px 10px 95px 66px !important;
+        max-width: calc(100vw - 66px) !important;
+      }
+      
+      .main-header {
+        padding: 5px 10px 5px 66px !important;
+        height: 50px !important;
+      }
+      
+      .sidebar {
+        width: 56px !important;
+        padding-top: 2vh !important;
+      }
+      
+      .sidebar-name {
+        font-size: 1.1rem !important;
+        margin: 10px 0 0 -10px !important;
+      }
+      
+      .sidebar hr {
+        height: 140px !important;
+        margin: 12px 0 0 0 !important;
+      }
+      
+      h1 {
+        font-size: 1.1rem !important;
+      }
+      
+      h2 {
+        font-size: 0.85rem !important;
+      }
+      
+      p, li, .back-link {
+        font-size: 0.75rem !important;
+      }
+      
+      .project-title {
+        font-size: 0.8rem !important;
+      }
+      
+      .project-desc, .project-link {
+        font-size: 0.7rem !important;
+      }
+      
+      .project-item {
+        margin-bottom: 14px !important;
+      }
+      
+      .header-nav {
+        gap: 5px !important;
+      }
+      
+      .header-link {
+        font-size: 0.75rem !important;
+        padding: 3px 0 !important;
+      }
+      
+      .header-right {
+        gap: 7px !important;
+      }
+      
+      .header-icons {
+        margin-left: 5px !important;
       }
     }
     </style>
@@ -384,7 +709,7 @@
           <nav class="header-nav">
             <a href="intro.html" class="header-link">About Me</a>
             <a href="cv.html" class="header-link">CV</a>
-            <a href="projects.html" class="header-link">Projects</a>
+            <a href="projects.html" class="header-link active">Projects</a>
           </nav>
           <div class="header-icons">
             <a href="mailto:cabrajac.cm@gmail.com" class="header-icon" title="Email">

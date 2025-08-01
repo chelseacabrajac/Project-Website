@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Chelsea Cabrajac | Intro</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
     <style>
@@ -42,6 +42,9 @@
             min-height: 100vh;
             text-transform: uppercase;
             font-weight: normal;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
         }
         .main-header {
             width: 100%;
@@ -88,6 +91,7 @@
             text-transform: uppercase;
             padding: 6px 0;
             display: inline-block;
+            touch-action: manipulation;
         }
         .header-link::before,
         .header-link::after {
@@ -113,6 +117,10 @@
         .header-link:hover::after {
             opacity: 1;
         }
+        .header-link.active::before,
+        .header-link.active::after {
+            opacity: 1;
+        }
         .header-icons {
             display: flex;
             align-items: center;
@@ -123,6 +131,7 @@
             display: inline-block;
             vertical-align: middle;
             transition: transform 0.2s;
+            touch-action: manipulation;
         }
         .header-icon:hover svg {
             transform: scale(1.25);
@@ -229,6 +238,7 @@
             vertical-align: middle;
             margin: 0 8px;
             transition: transform 0.2s;
+            touch-action: manipulation;
         }
         .footer-icon:hover svg {
             transform: scale(1.2);
@@ -289,6 +299,19 @@
         padding-left: 16px !important;
         padding-right: 16px !important;
       }
+      
+      /* Faster animations for tablets */
+      .text-animate {
+        transition: opacity 1.5s cubic-bezier(0.4,0,0.2,1), transform 1.5s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .photo-animate {
+        transition: opacity 1.5s cubic-bezier(0.4,0,0.2,1), transform 1.5s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .gradient-animate {
+        transition: opacity 1s 0.15s cubic-bezier(0.4,0,0.2,1), transform 1s 0.15s cubic-bezier(0.4,0,0.2,1) !important;
+      }
     }
     
     @media (max-width: 768px) {
@@ -302,16 +325,26 @@
         padding-left: 0 !important;
       }
       
+      /* Mobile-optimized animations */
       .text-animate {
+        transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1), transform 1.2s cubic-bezier(0.4,0,0.2,1) !important;
         margin-bottom: 24px !important;
         margin-top: 16px !important;
         font-size: 0.85rem !important;
         text-align: left !important;
       }
       
+      .photo-animate {
+        transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1), transform 1.2s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .gradient-animate {
+        transition: opacity 0.8s 0.1s cubic-bezier(0.4,0,0.2,1), transform 0.8s 0.1s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
       .profile-container {
         position: relative !important;
-        margin: 24px auto 0 auto !important;
+        margin: 16px auto 0 auto !important;
         max-width: 100% !important;
         width: 100% !important;
         display: flex !important;
@@ -350,7 +383,7 @@
       
       .sidebar-name {
         font-size: 1.4rem !important;
-        margin: 24px 0 0 -12px !important;
+        margin: 16px 0 0 -12px !important;
       }
       .main-header {
         padding: 8px 16px !important;
@@ -362,16 +395,18 @@
         flex-direction: row !important;
         align-items: center !important;
         width: 100% !important;
+        justify-content: flex-end !important;
       }
       .header-nav {
         gap: 8px !important;
         margin-top: 0 !important;
       }
       .header-right {
-        width: 100% !important;
+        width: auto !important;
         flex-direction: row !important;
         align-items: center !important;
         gap: 12px !important;
+        justify-content: flex-end !important;
       }
       .header-icons {
         margin-left: 8px !important;
@@ -392,14 +427,24 @@
         max-width: calc(100vw - 72px) !important;
       }
       
+      /* Fast animations for small mobile */
       .text-animate {
+        transition: opacity 1s cubic-bezier(0.4,0,0.2,1), transform 1s cubic-bezier(0.4,0,0.2,1) !important;
         font-size: 0.8rem !important;
         line-height: 1.5 !important;
         margin-bottom: 20px !important;
       }
       
+      .photo-animate {
+        transition: opacity 1s cubic-bezier(0.4,0,0.2,1), transform 1s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .gradient-animate {
+        transition: opacity 0.6s 0.05s cubic-bezier(0.4,0,0.2,1), transform 0.6s 0.05s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
       .profile-container {
-        margin: 16px auto 0 auto !important;
+        margin: 8px auto 0 auto !important;
       }
       
       .profile-container > div > div {
@@ -429,6 +474,11 @@
         padding: 4px 0 !important;
       }
       
+      .header-link.active::before,
+      .header-link.active::after {
+        opacity: 1 !important;
+      }
+      
       .header-right {
         gap: 8px !important;
       }
@@ -443,6 +493,7 @@
       
       .sidebar-name {
         font-size: 1.2rem !important;
+        margin: 12px 0 0 -12px !important;
       }
       
       /* Fix sidebar HR element on small mobile */
@@ -453,6 +504,225 @@
         display: block !important;
       }
     }
+    
+    /* Landscape orientation adjustments for mobile */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 50px !important;
+        height: 100vh !important;
+        z-index: 200 !important;
+        padding-top: 2vh !important;
+      }
+      
+      .sidebar-name {
+        font-size: 0.8rem !important;
+        margin: 8px 0 0 -8px !important;
+      }
+      
+      .sidebar hr {
+        height: 120px !important;
+        margin: 10px 0 0 0 !important;
+      }
+      
+      .intro-container, .cv-container {
+        padding: 12px 8px 60px 58px !important;
+        max-width: calc(100vw - 58px) !important;
+      }
+      
+      /* Ultra-fast landscape animations */
+      .text-animate {
+        transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1) !important;
+        font-size: 0.7rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 16px !important;
+        margin-top: 8px !important;
+      }
+      
+      .photo-animate {
+        transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .gradient-animate {
+        transition: opacity 0.5s 0.02s cubic-bezier(0.4,0,0.2,1), transform 0.5s 0.02s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .profile-container {
+        margin: 4px auto 0 auto !important;
+      }
+      
+      .profile-container > div > div {
+        width: 200px !important;
+        height: 200px !important;
+      }
+      
+      .profile-container img {
+        width: 200px !important;
+        height: 200px !important;
+      }
+      
+      .main-header {
+        padding: 4px 8px 4px 58px !important;
+        height: 50px !important;
+      }
+      
+      .header-nav {
+        gap: 4px !important;
+      }
+      
+      .header-link {
+        font-size: 0.7rem !important;
+        padding: 2px 0 !important;
+      }
+      
+      .header-link.active::before,
+      .header-link.active::after {
+        opacity: 1 !important;
+      }
+      
+      .header-right {
+        gap: 6px !important;
+      }
+      
+      .header-icons {
+        margin-left: 4px !important;
+      }
+      
+      h1 {
+        font-size: 1.0rem !important;
+      }
+      
+      p, li, .back-link {
+        font-size: 0.75rem !important;
+      }
+    }
+    
+    @media (max-width: 480px) and (orientation: landscape) {
+      .sidebar {
+        width: 45px !important;
+        padding-top: 1vh !important;
+      }
+      
+      .sidebar-name {
+        font-size: 0.7rem !important;
+        margin: 6px 0 0 -6px !important;
+      }
+      
+      .sidebar hr {
+        height: 100px !important;
+        margin: 8px 0 0 0 !important;
+      }
+      
+      .intro-container, .cv-container {
+        padding: 8px 6px 40px 52px !important;
+        max-width: calc(100vw - 52px) !important;
+      }
+      
+      /* Extremely fast animations for small landscape */
+      .text-animate {
+        transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1) !important;
+        font-size: 0.65rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 12px !important;
+        margin-top: 6px !important;
+      }
+      
+      .photo-animate {
+        transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .gradient-animate {
+        transition: opacity 0.4s 0.01s cubic-bezier(0.4,0,0.2,1), transform 0.4s 0.01s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .main-header {
+        padding: 3px 6px 3px 52px !important;
+        height: 45px !important;
+      }
+      
+      .header-link {
+        font-size: 0.65rem !important;
+      }
+      
+      .header-link.active::before,
+      .header-link.active::after {
+        opacity: 1 !important;
+      }
+      
+      h1 {
+        font-size: 0.9rem !important;
+      }
+      
+      p, li, .back-link {
+        font-size: 0.7rem !important;
+      }
+    }
+    
+    /* Portrait orientation optimizations */
+    @media (max-width: 768px) and (orientation: portrait) {
+      /* Optimized portrait animations */
+      .text-animate {
+        transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1), transform 1.2s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .photo-animate {
+        transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1), transform 1.2s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .gradient-animate {
+        transition: opacity 0.8s 0.1s cubic-bezier(0.4,0,0.2,1), transform 0.8s 0.1s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+    }
+    
+    @media (max-width: 480px) and (orientation: portrait) {
+      /* Fast portrait animations for small screens */
+      .text-animate {
+        transition: opacity 1s cubic-bezier(0.4,0,0.2,1), transform 1s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .photo-animate {
+        transition: opacity 1s cubic-bezier(0.4,0,0.2,1), transform 1s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .gradient-animate {
+        transition: opacity 0.6s 0.05s cubic-bezier(0.4,0,0.2,1), transform 0.6s 0.05s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+    }
+    
+    /* Touch-friendly improvements */
+    @media (hover: none) and (pointer: coarse) {
+      .header-link {
+        padding: 8px 4px !important;
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      
+      .header-icon,
+      .footer-icon {
+        padding: 8px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      
+      /* Remove hover effects on touch devices */
+      .header-link:hover::before,
+      .header-link:hover::after {
+        opacity: 0 !important;
+      }
+      
+      .header-icon:hover svg,
+      .footer-icon:hover svg {
+        transform: none !important;
+        fill: #CCCCCC !important;
+      }
+    }
     </style>
 </head>
 <body>
@@ -460,7 +730,7 @@
         <div class="header-content">
         <div class="header-right">
             <nav class="header-nav">
-            <a href="intro.html" class="header-link">About Me</a>
+            <a href="intro.html" class="header-link active">About Me</a>
             <a href="cv.html" class="header-link">CV</a>
             <a href="projects.html" class="header-link">Projects</a>
           </nav>
@@ -482,7 +752,8 @@
     <div class="cv-outer">
       <div class="cv-container">
       <div class="text-animate" style="margin-bottom: 50px; text-align: left; font-size: 0.90em; margin-top: 120px;">
-        Chelsea is multicultural and multifaceted in design, with a passion for travel and culinary experiences. After traveling the world with sports and an extremely decorated athletic journey, Chelsea has built a career around solving complex problems under pressure. This journey began as a highly decorated dual-sport NCAA Division I Athlete, instilling a strong work ethic and exceptional ability to perform in high-stress environments. That foundation led her to a career as a professional firefighter with the Long Beach Fire Department, serving on some of the nation's busiest resources and consistently demonstrating unwavering attention to detail in critical situations while protecting life, property, and the environment.<br><br>
+        Chelsea is multicultural and multifaceted in design, with a passion for travel and culinary experiences. After traveling the world with sports and an extremely decorated athletic journey, Chelsea has built a career around solving complex problems under pressure. <br><br>
+        This journey began as a highly decorated dual-sport NCAA Division I Athlete, instilling a strong work ethic and exceptional ability to perform in high-stress environments. That foundation led her to a career as a professional firefighter with the Long Beach Fire Department, serving on some of the nation's busiest resources and consistently demonstrating unwavering attention to detail in critical situations while protecting life, property, and the environment.<br><br>
         This passion for impactful problem-solving is now channeled into the world of data science. Having completed the TripleTen Data Science program, her proficiency exists in Python, SQL, Data Visualization, and Machine Learning. These skills are used to analyze complex datasets, uncover crucial insights, and deliver data-driven results that directly improve business decision-making.<br><br>
         Chelsea has a relentless intention to contribute to organizations, seeking as a uniquely resilient and results-oriented data professional. Success is found in environments where a diverse background can offer a fresh perspective and drive significant impact.
         <br>

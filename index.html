@@ -2,18 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>CHELSEA CABRAJAC</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
     <style>
         .slide-in-left {
             opacity: 0;
             transform: translateX(-80px);
-            transition: opacity 1.6s cubic-bezier(0.4,0,0.2,1), transform 1.6s cubic-bezier(0.4,0,0.2,1);
+            transition: opacity 6s cubic-bezier(0.4,0,0.2,1), transform 6s cubic-bezier(0.4,0,0.2,1);
         }
         .slide-in-left.active {
             opacity: 1;
             transform: translateX(0);
+        }
+        
+        /* Staggered delays for each element */
+        h1.slide-in-left {
+            transition-delay: 0s;
+        }
+        hr.slide-in-left {
+            transition-delay: 0.1s;
+        }
+        p.slide-in-left {
+            transition-delay: 0.2s;
+        }
+        .enter-link.fade-in {
+            transition: opacity 2.5s ease-in-out;
+            transition-delay: 1.5s;
         }
         .slide-in-right {
             opacity: 0;
@@ -45,6 +60,16 @@
             transform: translateX(-100px);
         }
         
+        /* Staggered exit delays - only for text elements */
+        
+        .fade-out {
+            opacity: 1;
+            transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1);
+        }
+        .fade-out.exit {
+            opacity: 0;
+        }
+        
         .slide-out-right {
             opacity: 1;
             transform: translateX(0);
@@ -55,10 +80,106 @@
             transform: translateX(100px);
         }
         
-        body.exit {
-            transition: background-position 0.8s cubic-bezier(0.4,0,0.2,1);
-            background-position: 200% 100% !important;
+
+        
+        /* Welcome transition styles */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #101010;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out;
         }
+        
+        .welcome-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .welcome-text {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.8rem;
+            font-weight: 100;
+            color: #CCCCCC;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            white-space: nowrap;
+        }
+        
+        .welcome-text.show {
+            opacity: 1;
+        }
+        
+        /* Position variations for different languages */
+        .welcome-text.pos-center { 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+        }
+        .welcome-text.pos-center.show { 
+            transform: translate(-50%, -50%); 
+        }
+        
+        .welcome-text.pos-top-left { 
+            top: 35%; 
+            left: 35%; 
+        }
+        
+        .welcome-text.pos-top-right { 
+            top: 30%; 
+            right: 25%; 
+        }
+        
+        .welcome-text.pos-bottom-left { 
+            bottom: 30%; 
+            left: 30%; 
+        }
+        
+        .welcome-text.pos-bottom-right { 
+            bottom: 25%; 
+            right: 20%; 
+        }
+        
+        .welcome-text.pos-center-left { 
+            top: 45%; 
+            left: 25%; 
+        }
+        
+        .welcome-text.pos-center-right { 
+            top: 55%; 
+            right: 15%; 
+        }
+        
+        .welcome-text.pos-top-center { 
+            top: 20%; 
+            left: 50%; 
+            transform: translateX(-50%); 
+        }
+        .welcome-text.pos-top-center.show { 
+            transform: translateX(-50%); 
+        }
+        
+        .welcome-text.pos-bottom-center { 
+            bottom: 20%; 
+            left: 50%; 
+            transform: translateX(-50%); 
+        }
+        .welcome-text.pos-bottom-center.show { 
+            transform: translateX(-50%); 
+        }
+        
+
         
         body {
             margin: 0;
@@ -77,6 +198,28 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Page loader overlay */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #101010;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 2.5s ease-in-out, visibility 2.5s ease-in-out;
+        }
+        
+        .page-loader.fade-out {
+            opacity: 0;
+            visibility: hidden;
         }
         body::before {
             content: '';
@@ -95,6 +238,23 @@
             text-align: center;
             position: relative;
             z-index: 2;
+        }
+        
+        /* Ensure elements start hidden */
+        .container h1,
+        .container hr,
+        .container p {
+            opacity: 0;
+            transform: translateX(-80px);
+        }
+        
+        .container .enter-link {
+            opacity: 0;
+            transform: translateX(0);
+        }
+        
+        .container .enter-link.fade-in.active {
+            opacity: 1 !important;
         }
         p {
             font-size: 1rem;
@@ -130,6 +290,9 @@
             position: relative;
             text-decoration: none;
             transition: color 0.2s;
+            width: auto;
+            min-width: auto;
+            touch-action: manipulation;
         }
         .enter-link::before,
         .enter-link::after {
@@ -170,8 +333,20 @@
         background-position: 110% 120% !important;
       }
       
-      body.exit {
-        background-position: 200% 120% !important;
+      /* Mobile welcome text */
+      .welcome-text {
+        font-size: 1.2rem !important;
+        font-weight: 100 !important;
+        letter-spacing: 1.5px !important;
+      }
+      
+      /* Faster animations for mobile */
+      .slide-in-left {
+        transition: opacity 4s cubic-bezier(0.4,0,0.2,1), transform 4s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .enter-link.fade-in {
+        transition-delay: 1s !important;
       }
     }
     
@@ -183,18 +358,23 @@
       }
       
       body {
-        background-size: 100% !important;
-        background-position: 120% 130% !important;
+        background-size: 80% !important;
+        background-position: 85% 50% !important;
         background-attachment: scroll !important;
-      }
-      
-      body.exit {
-        background-position: 220% 130% !important;
       }
       
       /* Mobile-optimized exit animations */
       .slide-out-left.exit {
         transform: translateX(-120px) !important;
+      }
+      
+      /* Faster mobile animations */
+      .slide-in-left {
+        transition: opacity 3s cubic-bezier(0.4,0,0.2,1), transform 3s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .enter-link.fade-in {
+        transition-delay: 0.8s !important;
       }
       
       h1 {
@@ -209,12 +389,20 @@
         font-size: 0.9rem !important;
       }
       .enter-link {
-        width: 100% !important;
-        min-width: 0 !important;
+        width: auto !important;
+        min-width: auto !important;
+        display: block !important;
       }
       hr {
         width: 100% !important;
         margin-left: 0 !important;
+      }
+      
+      /* Tablet welcome text */
+      .welcome-text {
+        font-size: 1.1rem !important;
+        font-weight: 100 !important;
+        letter-spacing: 1px !important;
       }
     }
     
@@ -225,18 +413,23 @@
       }
       
       body {
-        background-size: 120% !important;
-        background-position: 130% 140% !important;
+        background-size: 100% !important;
+        background-position: 90% 50% !important;
         background-attachment: scroll !important;
-      }
-      
-      body.exit {
-        background-position: 250% 140% !important;
       }
       
       /* Small mobile exit animations */
       .slide-out-left.exit {
         transform: translateX(-150px) !important;
+      }
+      
+      /* Even faster animations for small screens */
+      .slide-in-left {
+        transition: opacity 2.5s cubic-bezier(0.4,0,0.2,1), transform 2.5s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .enter-link.fade-in {
+        transition-delay: 0.6s !important;
       }
       
       h1 {
@@ -246,22 +439,249 @@
       p, .enter-link, .cta {
         font-size: 0.8rem !important;
       }
+      
+      .enter-link {
+        display: block !important;
+      }
+      
+      /* Small mobile welcome text */
+      .welcome-text {
+        font-size: 1rem !important;
+        font-weight: 100 !important;
+        letter-spacing: 0.8px !important;
+      }
+    }
+    
+    /* Landscape orientation adjustments for mobile */
+    @media (max-width: 768px) and (orientation: landscape) {
+      body {
+        background-size: 50% !important;
+        background-position: 75% 50% !important;
+        min-height: 100vh !important;
+      }
+      
+      .container {
+        padding: 12px 8px 60px 40px !important;
+        max-width: calc(100vw - 50px) !important;
+        margin: 0 auto !important;
+      }
+      
+      /* Faster landscape animations */
+      .slide-in-left {
+        transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .enter-link.fade-in {
+        transition-delay: 0.5s !important;
+      }
+      
+      h1 {
+        font-size: 1.1rem !important;
+        margin-bottom: 0 !important;
+      }
+      
+      p, .enter-link, .cta {
+        font-size: 0.8rem !important;
+      }
+      
+      hr {
+        margin: 1px auto 2px -5% !important;
+      }
+      
+      /* Landscape welcome text */
+      .welcome-text {
+        font-size: 0.9rem !important;
+        font-weight: 100 !important;
+        letter-spacing: 0.8px !important;
+      }
+    }
+    
+    @media (max-width: 480px) and (orientation: landscape) {
+      body {
+        background-size: 60% !important;
+        background-position: 70% 50% !important;
+        min-height: 100vh !important;
+      }
+      
+      .container {
+        padding: 8px 6px 40px 30px !important;
+        max-width: calc(100vw - 40px) !important;
+        margin: 0 auto !important;
+      }
+      
+      /* Ultra-fast animations for small landscape */
+      .slide-in-left {
+        transition: opacity 1.5s cubic-bezier(0.4,0,0.2,1), transform 1.5s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .enter-link.fade-in {
+        transition-delay: 0.3s !important;
+      }
+      
+      h1 {
+        font-size: 1rem !important;
+        margin-bottom: 0 !important;
+      }
+      
+      p, .enter-link, .cta {
+        font-size: 0.7rem !important;
+      }
+      
+      hr {
+        margin: 1px auto 1px -5% !important;
+      }
+      
+      /* Small landscape welcome text */
+      .welcome-text {
+        font-size: 0.7rem !important;
+        font-weight: 100 !important;
+        letter-spacing: 0.5px !important;
+      }
+    }
+    
+    /* Portrait orientation adjustments for mobile */
+    @media (max-width: 768px) and (orientation: portrait) {
+      body {
+        background-size: 85% !important;
+        background-position: 90% 55% !important;
+        min-height: 100vh !important;
+      }
+      
+      .container {
+        padding: 20px 12px 100px 60px !important;
+        max-width: calc(100vw - 70px) !important;
+        margin: 0 auto !important;
+      }
+      
+      /* Optimized portrait animations */
+      .slide-in-left {
+        transition: opacity 3s cubic-bezier(0.4,0,0.2,1), transform 3s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .enter-link.fade-in {
+        transition-delay: 0.8s !important;
+      }
+      
+      h1 {
+        font-size: 1.3rem !important;
+        text-align: center !important;
+      }
+      
+      p, .enter-link, .cta {
+        font-size: 0.85rem !important;
+      }
+      
+      /* Portrait welcome text */
+      .welcome-text {
+        font-size: 1rem !important;
+        font-weight: 100 !important;
+        letter-spacing: 1px !important;
+      }
+    }
+    
+    @media (max-width: 480px) and (orientation: portrait) {
+      body {
+        background-size: 110% !important;
+        background-position: 95% 60% !important;
+        min-height: 100vh !important;
+      }
+      
+      .container {
+        padding: 16px 10px 80px 50px !important;
+        max-width: calc(100vw - 60px) !important;
+        margin: 0 auto !important;
+      }
+      
+      /* Fast portrait animations for small screens */
+      .slide-in-left {
+        transition: opacity 2.5s cubic-bezier(0.4,0,0.2,1), transform 2.5s cubic-bezier(0.4,0,0.2,1) !important;
+      }
+      
+      .enter-link.fade-in {
+        transition-delay: 0.6s !important;
+      }
+      
+      h1 {
+        font-size: 1.1rem !important;
+        text-align: center !important;
+      }
+      
+      p, .enter-link, .cta {
+        font-size: 0.75rem !important;
+      }
+      
+      /* Small portrait welcome text */
+      .welcome-text {
+        font-size: 0.9rem !important;
+        font-weight: 100 !important;
+        letter-spacing: 0.8px !important;
+      }
+    }
+    
+    /* Touch-friendly improvements */
+    @media (hover: none) and (pointer: coarse) {
+      .enter-link {
+        padding: 8px 16px !important;
+        margin: 20px auto 0 auto !important;
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      
+      .enter-link::before,
+      .enter-link::after {
+        display: none !important;
+      }
     }
     </style>
 </head>
 <body>
+    <!-- Page loader overlay -->
+    <div class="page-loader"></div>
+    
     <div class="container">
         <h1 class="slide-in-left slide-out-left" style="margin-bottom:0;">CHELSEA CABRAJAC</h1>
-        <hr class="slide-out-left" style="border: none; border-top: 1px solid #CCCCCC; width: 110%; margin: 2px auto 4px -5%;">
-        <p class="slide-in-right slide-out-left">Creative Developer and Designer</p>
-        <a href="intro.html" class="enter-link slide-in-up slide-out-left">Enter</a>
+        <hr class="slide-in-left slide-out-left" style="border: none; border-top: 1px solid #CCCCCC; width: 110%; margin: 2px auto 4px -5%;">
+        <p class="slide-in-left slide-out-left">Creative Developer and Designer</p>
+        <a href="intro.html" class="enter-link fade-in fade-out">Enter</a>
+    </div>
+    
+    <!-- Welcome transition overlay -->
+    <div class="welcome-overlay">
+        <div class="welcome-text pos-center" id="welcome-0"></div>
+        <div class="welcome-text pos-top-left" id="welcome-1"></div>
+        <div class="welcome-text pos-top-right" id="welcome-2"></div>
+        <div class="welcome-text pos-bottom-left" id="welcome-3"></div>
+        <div class="welcome-text pos-bottom-right" id="welcome-4"></div>
+        <div class="welcome-text pos-center-left" id="welcome-5"></div>
+        <div class="welcome-text pos-center-right" id="welcome-6"></div>
+        <div class="welcome-text pos-top-center" id="welcome-7"></div>
+        <div class="welcome-text pos-bottom-center" id="welcome-8"></div>
+    </div>
+
 <script>
   window.addEventListener('DOMContentLoaded', function() {
+    // Start page fade-in by removing dark overlay
     setTimeout(function() {
-      document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-up').forEach(function(el) {
+      const pageLoader = document.querySelector('.page-loader');
+      pageLoader.classList.add('fade-out');
+    }, 100);
+    
+    // Start text animations while page is still fading in
+    setTimeout(function() {
+      // Add active class to all slide-in elements
+      const slideElements = document.querySelectorAll('.slide-in-left');
+      slideElements.forEach(function(el, index) {
         el.classList.add('active');
       });
-    }, 200);
+      
+      // Add active class to fade-in elements (Enter link)
+      const fadeElements = document.querySelectorAll('.fade-in');
+      fadeElements.forEach(function(el) {
+        el.classList.add('active');
+      });
+    }, 1800);
   });
   
   // Add exit animations when Enter is clicked
@@ -271,26 +691,68 @@
     const hr = document.querySelector('hr');
     const p = document.querySelector('p');
     const body = document.querySelector('body');
+    const welcomeOverlay = document.querySelector('.welcome-overlay');
+    
+    // Welcome messages in different languages
+    const welcomeMessages = [
+      'Welcome',      // English - center
+      'Bienvenido',   // Spanish - top-left
+      'Benvenuto',    // Italian - top-right
+      'Bienvenue',    // French - bottom-left
+      'Willkommen',   // German - bottom-right
+      'Welkom',       // Dutch - center-left
+      'Добро пожаловать', // Russian - center-right
+      'いらっしゃいませ',  // Japanese - top-center
+      '欢迎'          // Chinese - bottom-center
+    ];
     
     enterLink.addEventListener('click', function(e) {
       e.preventDefault();
       
-      // Add exit classes to text elements (slide left)
-      h1.classList.add('slide-out-left', 'exit');
-      hr.classList.add('slide-out-left', 'exit');
-      p.classList.add('slide-out-left', 'exit');
-      enterLink.classList.add('exit');
+      console.log('Enter link clicked, classes before:', enterLink.className);
       
-      // Add exit class to body (slide photo right)
-      body.classList.add('exit');
+      // 1. Enter link disappears immediately
+      enterLink.style.transition = 'none !important';
+      enterLink.style.opacity = '0';
+      enterLink.style.visibility = 'hidden';
       
-      // Navigate after animation completes
+      // 2. Text elements slide left immediately
+      setTimeout(function() {
+        h1.classList.add('slide-out-left', 'exit');
+        hr.classList.add('slide-out-left', 'exit');
+        p.classList.add('slide-out-left', 'exit');
+      }, 100);
+      
+      // 3. Show welcome transition after text exits
+      setTimeout(function() {
+        welcomeOverlay.classList.add('active');
+        showWelcomeSequence(welcomeMessages);
+      }, 1000);
+      
+      console.log('Enter link classes after changes:', enterLink.className);
+    });
+    
+    function showWelcomeSequence(messages) {
+      // Show all messages with staggered timing and overlapping effect
+      messages.forEach(function(message, index) {
+        setTimeout(function() {
+          const welcomeElement = document.getElementById('welcome-' + index);
+          welcomeElement.textContent = message;
+          welcomeElement.classList.add('show');
+          
+          // Hide each message after it's been shown for a while
+          setTimeout(function() {
+            welcomeElement.classList.remove('show');
+          }, 1800);
+        }, index * 150); // Stagger each message by 150ms (tighter timing)
+      });
+      
+      // Navigate after all animations complete
       setTimeout(function() {
         window.location.href = 'intro.html';
-      }, 800);
-    });
+      }, messages.length * 150 + 2500);
+    }
   });
 </script>
-    </div>
 </body>
 </html>
