@@ -354,22 +354,23 @@
             }
         }
         
-        /* Landscape orientation for mobile */
-        @media (max-width: 768px) and (orientation: landscape) {
+        /* Landscape orientation for mobile - More specific targeting */
+        @media screen and (max-width: 768px) and (orientation: landscape),
+               screen and (max-height: 480px) and (min-width: 481px) {
             .sidebar {
-                width: 30px;
+                width: 30px !important;
                 padding-top: 1vh;
-                left: -5px;
+                left: -10px !important;
             }
             
             .sidebar-name {
-                font-size: 0.8rem;
-                margin: 6px 0 0 -6px;
+                font-size: 0.8rem !important;
+                margin: 6px 0 0 -6px !important;
             }
             
             .content-container {
-                padding: 16px 8px 80px 25px;
-                max-width: calc(100vw - 25px);
+                padding: 16px 8px 80px 15px !important;
+                max-width: calc(100vw - 20px) !important;
             }
             
             h1, h2 {
@@ -396,20 +397,21 @@
             }
         }
         
-        @media (max-width: 480px) and (orientation: landscape) {
+        @media screen and (max-width: 480px) and (orientation: landscape),
+               screen and (max-height: 320px) and (min-width: 321px) {
             .sidebar {
-                width: 25px;
-                left: -8px;
+                width: 20px !important;
+                left: -12px !important;
             }
             
             .sidebar-name {
-                font-size: 0.7rem;
-                margin: 4px 0 0 -4px;
+                font-size: 0.6rem !important;
+                margin: 4px 0 0 -4px !important;
             }
             
             .content-container {
-                padding: 12px 6px 60px 20px;
-                max-width: calc(100vw - 20px);
+                padding: 12px 6px 60px 10px !important;
+                max-width: calc(100vw - 15px) !important;
             }
             
             h1, h2 {
