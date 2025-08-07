@@ -125,9 +125,9 @@
             flex-direction: column;
         }
         .projects-container {
-            max-width: 900px;
+            max-width: 500px;
             margin: 0;
-            padding: 48px 32px 24px 32px;
+            padding: 24px 0 0 300px;
             text-align: left;
             flex: 1;
             display: flex;
@@ -135,7 +135,7 @@
             justify-content: flex-start;
         }
         h1 {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             margin-bottom: 0;
             color: #CCCCCC;
             letter-spacing: 2px;
@@ -143,7 +143,7 @@
             font-stretch: condensed;
             text-align: left;
             margin-top: 8vh;
-            margin-left: 300px;
+            margin-left: 0;
             width: fit-content;
         }
         hr {
@@ -156,11 +156,16 @@
             margin: 0;
             padding: 0;
             list-style: none;
+            margin-left: 0;
+            max-width: 600px;
         }
         .project-item {
             margin-bottom: 32px;
             padding-bottom: 24px;
             border-bottom: 1px solid #222;
+        }
+        .project-item:last-child {
+            border-bottom: none;
         }
         .project-title {
             font-size: 1.3rem;
@@ -169,15 +174,16 @@
             font-weight: 400;
         }
         .project-desc {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #CCCCCC;
             text-transform: none;
             margin-bottom: 8px;
+            line-height: 1.5;
         }
         .project-link {
             color: #CCCCCC;
             text-decoration: underline;
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: color 0.2s;
         }
         .project-link:hover {
@@ -213,7 +219,7 @@
         .footer-icon {
             display: inline-block;
             vertical-align: middle;
-            margin: 0 8px;
+            margin: 0 3px;
             transition: transform 0.2s;
             touch-action: manipulation;
         }
@@ -288,37 +294,47 @@
                 margin-left: 8px;
             }
             
-            .content-container {
+            .projects-container {
                 padding: 24px 16px 120px 80px;
                 max-width: calc(100vw - 80px);
                 margin: 0;
             }
             
-            h1, h2 {
+            h1 {
+                margin-left: 0;
                 font-size: 1.2rem;
                 margin-top: 24px;
             }
             
-            .projects-grid {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
+            .projects-hr {
+                margin-left: 0 !important;
+                width: 40% !important;
             }
             
-            .project-card {
-                width: 100%;
-                padding: 16px;
-                margin: 0;
+            .project-list {
+                margin-left: 0;
+                max-width: none;
             }
             
-            .project-image {
-                max-width: 100%;
-                height: auto;
+            .project-title {
+                font-size: 1.1rem;
+            }
+            
+            .project-link {
+                font-size: 1.1rem;
+            }
+            
+            .project-desc {
+                font-size: 0.85rem;
             }
             
             .footer {
                 padding: 12px 0 6px 0;
                 font-size: 0.9rem;
+            }
+            
+            .footer-icon {
+                margin: 0 4px;
             }
         }
         
@@ -332,17 +348,25 @@
                 margin: 12px 0 0 -10px;
             }
             
-            .content-container {
+            .projects-container {
                 padding: 20px 12px 100px 60px;
                 max-width: calc(100vw - 60px);
             }
             
-            h1, h2 {
+            h1 {
                 font-size: 1.1rem;
             }
             
-            .project-card {
-                padding: 12px;
+            .project-title {
+                font-size: 1rem;
+            }
+            
+            .project-link {
+                font-size: 1rem;
+            }
+            
+            .project-desc {
+                font-size: 0.8rem;
             }
             
             .header-link {
@@ -351,6 +375,10 @@
             
             .footer {
                 font-size: 0.8rem;
+            }
+            
+            .footer-icon {
+                margin: 0 2px;
             }
         }
         
@@ -368,18 +396,36 @@
                 margin: 8px 0 0 -8px !important;
             }
             
-            .content-container {
+            .projects-container {
                 padding: 16px 8px 80px 60px !important;
                 max-width: calc(100vw - 70px) !important;
             }
             
-            h1, h2 {
+            h1 {
                 font-size: 1rem;
                 margin-top: 16px;
+                margin-left: 0;
             }
             
-            .project-card {
-                padding: 12px;
+            .projects-hr {
+                margin-left: 0 !important;
+                width: 30% !important;
+            }
+            
+            .project-list {
+                margin-left: 0;
+            }
+            
+            .project-title {
+                font-size: 0.95rem;
+            }
+            
+            .project-link {
+                font-size: 0.95rem;
+            }
+            
+            .project-desc {
+                font-size: 0.75rem;
             }
             
             .main-header {
@@ -409,17 +455,35 @@
                 margin: 4px 0 0 -4px !important;
             }
             
-            .content-container {
+            .projects-container {
                 padding: 12px 6px 60px 50px !important;
                 max-width: calc(100vw - 60px) !important;
             }
             
-            h1, h2 {
+            h1 {
                 font-size: 0.9rem;
+                margin-left: 0;
             }
             
-            .project-card {
-                padding: 10px;
+            .projects-hr {
+                margin-left: 0 !important;
+                width: 25% !important;
+            }
+            
+            .project-list {
+                margin-left: 0;
+            }
+            
+            .project-title {
+                font-size: 0.85rem;
+            }
+            
+            .project-link {
+                font-size: 0.85rem;
+            }
+            
+            .project-desc {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -440,6 +504,9 @@
             <a href="https://www.linkedin.com/in/chelseacabrajac" class="header-icon" title="LinkedIn" target="_blank" rel="noopener">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#CCCCCC" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.026-3.063-1.867-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
             </a>
+            <a href="https://github.com/chelseacabrajac" class="header-icon" title="GitHub" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#CCCCCC" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -450,8 +517,42 @@
     </div>
     <div class="projects-outer">
       <div class="projects-container">
-        <h1 class="slide-in-left">Coming Soon</h1>
-        <hr class="projects-hr" style="border-top: 1px solid #CCCCCC; width: 25%; margin: 4px 0 24px 300px;">
+        <ul class="project-list">
+          <li class="project-item slide-in-left">
+            <h2 class="project-title">
+              <a href="https://github.com/chelseacabrajac/TripleTen_Projects/tree/main/sprint5_video_games_sales_forecasting" class="project-link" target="_blank" rel="noopener">Video Game Sales Forecasting</a>
+            </h2>
+            <p class="project-desc">
+              This project demonstrates comprehensive Video Game Market Analysis and Business Intelligence using historical gaming data to identify patterns that determine game success. Working as an analyst for online game store Ice, the analysis focuses on market trends, platform lifecycles, regional preferences, and statistical validation to inform 2017 marketing campaign strategies and identify potential high-performing games.
+            </p>
+          </li>
+          
+          <li class="project-item slide-in-left">
+            <h2 class="project-title">
+              <a href="https://github.com/chelseacabrajac/TripleTen_Projects/tree/main/sprint3_megaline_client_analysis" class="project-link" target="_blank" rel="noopener">Megaline Mobile Plan Analysis</a>
+            </h2>
+            <p class="project-desc">
+              This project demonstrates comprehensive Mobile Service Usage Analysis and Statistical Hypothesis Testing using real telecom data from Megaline. The analysis involves systematic data preprocessing across multiple datasets, revenue calculation methodology development, usage pattern analysis, and rigorous statistical testing to determine which subscription plan generates more revenue and identify regional differences in customer behavior.
+          </li>
+          
+          <li class="project-item slide-in-left">
+            <h2 class="project-title">
+              <a href="https://github.com/chelseacabrajac/TripleTen_Projects/tree/main/sprint2_instacart_market_basket__analysis" class="project-link" target="_blank" rel="noopener">InstaCart Market Basket Analysis</a>
+            </h2>
+            <p class="project-desc">
+              This project demonstrates comprehensive Instacart Market Basket Analysis through systematic data cleaning, exploratory data analysis, and customer behavior insights using real grocery shopping data. The analysis covers data preprocessing, statistical exploration across multiple datasets, and in-depth investigation of shopping patterns, product popularity, and customer ordering behaviors.
+            </p>
+          </li>
+          
+          <li class="project-item slide-in-left">
+            <h2 class="project-title">
+              <a href="https://github.com/chelseacabrajac/TripleTen_Projects/tree/main/sprint1_movie_show_data_analysis" class="project-link" target="_blank" rel="noopener">Movie and TV Show Data Analysis</a>
+            </h2>
+            <p class="project-desc">
+              This project demonstrates Data Analysis with Pandas through systematic data cleaning, manipulation, and function creation using a comprehensive movie and TV show dataset. The focus was on developing practical pandas skills including DataFrame operations, data filtering, indexing, and creating reusable functions for data analysis tasks.
+            </p>
+          </li>
+        </ul>
       </div>
       <footer class="footer">
         <span>CHELSEA CABRAJAC&nbsp;|&nbsp;</span>
@@ -460,6 +561,9 @@
         </a>
         <a href="https://www.linkedin.com/in/chelseacabrajac" class="footer-icon" title="LinkedIn" target="_blank" rel="noopener">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#CCCCCC" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.026-3.063-1.867-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
+        </a>
+        <a href="https://github.com/chelseacabrajac" class="footer-icon" title="GitHub" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#CCCCCC" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         </a>
         <a href="index.html" class="footer-icon" title="Home">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#CCCCCC" viewBox="0 0 24 24"><path d="M12 3l10 9h-3v9h-6v-6h-2v6H5v-9H2z"/></svg>
